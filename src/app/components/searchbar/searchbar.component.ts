@@ -20,11 +20,16 @@ export class SearchbarComponent implements OnInit {
     var elements = <NodeListOf<HTMLInputElement>> document.getElementsByName("radio");
     for(var i = 0; i < elements.length; i++)
     {
-      if(elements[i].checked)
+      if(elements[0].checked)
       {
-        this.route = elements[i].value;
+        this.route = "GetByTitle/";
+      }
+      else if(elements[1].checked)
+      {
+        this.route = "GetByAuthorsName/";
       }
     }
+    
     console.log(this.bookService.url + this.route + this.keywords);
     
     this.bookService.getBooks(this.route + this.keywords).subscribe(res => { 
